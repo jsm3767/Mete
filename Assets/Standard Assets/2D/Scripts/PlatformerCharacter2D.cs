@@ -5,7 +5,7 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : MonoBehaviour
     {
-        [SerializeField] private float m_MaxSpeed = 20f;                    // The fastest the player can travel in the x axis.
+        [SerializeField] private float m_MaxSpeed = 25f;                    // The fastest the player can travel in the x axis.
          private float m_JumpForce = 1000f;                  // Amount of force added when the player jumps.
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
@@ -14,7 +14,7 @@ namespace UnityStandardAssets._2D
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 
-        const float onWallRadius = .08f;
+        const float onWallRadius = .14f;
 
         [SerializeField]
         private bool onWallRight;
@@ -88,7 +88,7 @@ namespace UnityStandardAssets._2D
                         if( !onWallLeft)
                         { 
                             onWallLeft = true;
-                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 5.0f)));
+                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 4.0f)));
                             Debug.Log(Mathf.Abs(velocityLastUpdate.x));
                         }
                     }
@@ -101,7 +101,7 @@ namespace UnityStandardAssets._2D
                         if (!onWallRight)
                         {
                             onWallRight = true;
-                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 5.0f)));
+                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 4.0f)));
                             Debug.Log(Mathf.Abs(velocityLastUpdate.x));
                         }
                     }
@@ -176,7 +176,7 @@ namespace UnityStandardAssets._2D
                 {
                     //Debug.Log("move: " + move);
                     
-                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (move*2.0f), -20, 20), m_Rigidbody2D.velocity.y);
+                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (move*2.0f), -25, 25), m_Rigidbody2D.velocity.y);
 
                 }
                 else
@@ -218,13 +218,13 @@ namespace UnityStandardAssets._2D
                 if(onWallLeft)
                 {
                     reboundRight = true;
-                    m_Rigidbody2D.AddForce(new Vector2(1200, m_JumpForce));
+                    m_Rigidbody2D.AddForce(new Vector2(1400, m_JumpForce));
                     reboundRightTimer = .3f;
                 }
                 else if( onWallRight)
                 {
                     reboundLeft = true;
-                    m_Rigidbody2D.AddForce(new Vector2(-1200, m_JumpForce));
+                    m_Rigidbody2D.AddForce(new Vector2(-1400, m_JumpForce));
                     reboundLeftTimer = .3f;
                 }
                 cantJumpTimer = .1f;
