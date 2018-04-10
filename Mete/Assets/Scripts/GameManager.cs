@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timer = 0;
-        songBPM = 45;
+        songBPM = 60;
         secondsPerBeat = 60.0f / songBPM;
 
         chunks = new Queue<GameObject>();
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
         {
             spawn = Instantiate(Chunk);
         }
-        spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics2D.gravity.y * (secondsPerBeat * secondsPerBeat),0);
+        spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerBeat * secondsPerBeat),0);
         spawn.GetComponent<Rigidbody>().useGravity = true;
         Debug.Log("Boom");
 
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
     protected IEnumerator SlideCamera()
     {
         float t = 0.0f;
-        float timer = secondsPerBeat / 2.0f;
+        float timer = secondsPerBeat / 3.0f;
 
         Vector3 startPos = Camera.main.transform.position;
         Vector3 endPos = Camera.main.transform.position + new Vector3(12, 0, 0);
