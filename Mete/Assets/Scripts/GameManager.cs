@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     float secondsPerBeat;
 
     [SerializeField] GameObject Chunk;
+    GameObject spawn;
 
     Queue<GameObject> chunks;
 
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timer = 0;
-        songBPM = 60;
+        songBPM = 45;
         secondsPerBeat = 60.0f / songBPM;
 
         chunks = new Queue<GameObject>();
@@ -25,7 +26,10 @@ public class GameManager : MonoBehaviour {
         Pulse();
         Pulse();
         Pulse();
-	}
+        Pulse();
+
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,9 +44,26 @@ public class GameManager : MonoBehaviour {
 
     void Pulse()
     {
+        if (spawn)
+        {
+            spawn.GetComponent<Rigidbody>().useGravity = false;
+            spawn.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            spawn.transform.position = this.transform.position;
+        }
+
+
         this.transform.position = this.transform.position + new Vector3(12,0,0);
-        GameObject spawn = Instantiate(Chunk);
-        spawn.transform.position = this.transform.position;
+        if (spawn)
+        {
+            Random.seed = Random.Range(0, 100000);
+            spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
+        }
+        else
+        {
+            spawn = Instantiate(Chunk);
+        }
+        spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics2D.gravity.y * (secondsPerBeat * secondsPerBeat),0);
+        spawn.GetComponent<Rigidbody>().useGravity = true;
         Debug.Log("Boom");
 
 
@@ -52,7 +73,27 @@ public class GameManager : MonoBehaviour {
             GameObject fall = chunks.Dequeue();
             Rigidbody rb = fall.GetComponent<Rigidbody>();
             rb.useGravity = true;
-            Destroy(fall, 10);
+            Destroy(fall, 4);
         }
+
+        StartCoroutine(SlideCamera());
+    }
+
+    protected IEnumerator SlideCamera()
+    {
+        float t = 0.0f;
+        float timer = secondsPerBeat / 2.0f;
+
+        Vector3 startPos = Camera.main.transform.position;
+        Vector3 endPos = Camera.main.transform.position + new Vector3(12, 0, 0);
+
+        while(t < timer)
+        {
+            Camera.main.transform.position = Vector3.Lerp(startPos, endPos, t/timer);
+            t += Time.deltaTime;
+            yield return 0;
+        }
+
+        yield break;
     }
 }
