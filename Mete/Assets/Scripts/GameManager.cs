@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
     float songBPM;
     float secondsPerBeat;
+    float secondsPerMeasure;
 
     [SerializeField] GameObject Chunk;
     GameObject spawn;
@@ -18,14 +19,17 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timer = 0;
-        songBPM = 60;
+        songBPM = 120;
         secondsPerBeat = 60.0f / songBPM;
+        secondsPerMeasure = secondsPerBeat * 4;
+
+
 
         chunks = new Queue<GameObject>();
-        Pulse();
-        Pulse();
-        Pulse();
-        Pulse();
+        Pulse(true);
+        Pulse(true);
+        Pulse(true);
+        Pulse(true);
         Pulse();
 
         
@@ -35,14 +39,14 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         timer += Time.deltaTime;
 
-        if(timer > secondsPerBeat)
+        if(timer > secondsPerMeasure)
         {
-            timer -= secondsPerBeat;
+            timer -= secondsPerMeasure;
             Pulse();
         }
 	}
 
-    void Pulse()
+    void Pulse(bool startChunk = false)
     {
         if (spawn)
         {
@@ -53,7 +57,7 @@ public class GameManager : MonoBehaviour {
 
 
         this.transform.position = this.transform.position + new Vector3(12,0,0);
-        if (spawn)
+        if (spawn && !startChunk)
         {
             Random.seed = Random.Range(0, 100000);
             spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour {
         {
             spawn = Instantiate(Chunk);
         }
-        spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerBeat * secondsPerBeat),0);
+        spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerMeasure * secondsPerMeasure),0);
         spawn.GetComponent<Rigidbody>().useGravity = true;
         Debug.Log("Boom");
 
@@ -82,7 +86,7 @@ public class GameManager : MonoBehaviour {
     protected IEnumerator SlideCamera()
     {
         float t = 0.0f;
-        float timer = secondsPerBeat / 3.0f;
+        float timer = secondsPerMeasure / 2.0f;
 
         Vector3 startPos = Camera.main.transform.position;
         Vector3 endPos = Camera.main.transform.position + new Vector3(12, 0, 0);
