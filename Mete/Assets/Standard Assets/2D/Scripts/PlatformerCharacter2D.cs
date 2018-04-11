@@ -30,6 +30,7 @@ namespace UnityStandardAssets._2D
         private Transform rightCheck;
         private Transform artTransform;
         private Vector2 velocityLastUpdate = new Vector2(0,0);
+        public SpriteRenderer jumpIndicator;
 
         [SerializeField] private int nJumpsLeft;
         [SerializeField] private float cantWallSlideTimer = 0.0f;
@@ -142,6 +143,15 @@ namespace UnityStandardAssets._2D
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
             velocityLastUpdate = m_Rigidbody2D.velocity;
+
+            if(nJumpsLeft > 0 )
+            {
+                jumpIndicator.enabled = true;
+            }
+            else
+            {
+                jumpIndicator.enabled = false;
+            }
         }
 
 
