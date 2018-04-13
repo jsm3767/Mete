@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour {
         }
         spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerMeasure * secondsPerMeasure),0);
         spawn.GetComponent<Rigidbody>().useGravity = true;
-        Debug.Log("Boom");
 
 
         chunks.Enqueue(spawn);
@@ -78,6 +77,13 @@ public class GameManager : MonoBehaviour {
             Rigidbody rb = fall.GetComponent<Rigidbody>();
             rb.useGravity = true;
             Destroy(fall, 4);
+        }
+
+        GameObject[] chunksOnScreen = GameObject.FindGameObjectsWithTag("Chunk");
+
+        for(int i = 0; i < chunksOnScreen.Length; i++)
+        {
+            chunksOnScreen[i].GetComponent<ChunkPulse>().Pulse();
         }
 
         StartCoroutine(SlideCamera());

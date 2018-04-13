@@ -90,7 +90,6 @@ namespace UnityStandardAssets._2D
                         { 
                             onWallLeft = true;
                             m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 4.0f)));
-                            Debug.Log(Mathf.Abs(velocityLastUpdate.x));
                         }
                     }
                     
@@ -103,7 +102,6 @@ namespace UnityStandardAssets._2D
                         {
                             onWallRight = true;
                             m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 4.0f)));
-                            Debug.Log(Mathf.Abs(velocityLastUpdate.x));
                         }
                     }
                 }

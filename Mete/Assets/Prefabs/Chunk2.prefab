@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4868627837903798}
   - component: {fileID: 54727583627773116}
   - component: {fileID: 114007351894926422}
+  - component: {fileID: 114608159126517246}
   m_Layer: 0
   m_Name: Chunk2
   m_TagString: Chunk
@@ -113,7 +114,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -129,7 +129,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -147,7 +146,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -163,7 +161,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -246,3 +243,15 @@ MonoBehaviour:
   - {fileID: 1601284667756196, guid: 9a6031861a8edcf458bdc6e3337c9d3a, type: 2}
   - {fileID: 1742684827580612, guid: 920b56ff11c285d4ea0a3a489a5be98c, type: 2}
   - {fileID: 1972302068779110, guid: 92706b579f2aaab45a906bec9432f765, type: 2}
+--- !u!114 &114608159126517246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035826481679972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c689acf99943d14cb04d3d7b089469c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platforms: []
