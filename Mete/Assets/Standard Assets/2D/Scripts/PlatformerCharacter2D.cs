@@ -32,6 +32,8 @@ namespace UnityStandardAssets._2D
         private Vector2 velocityLastUpdate = new Vector2(0,0);
         public SpriteRenderer jumpIndicator;
 
+        private float reboundForce = 1200.0f;
+
         [SerializeField] private int nJumpsLeft;
         [SerializeField] private float cantWallSlideTimer = 0.0f;
         [SerializeField] private float cantJumpTimer = 0.0f;
@@ -226,13 +228,13 @@ namespace UnityStandardAssets._2D
                 if(onWallLeft)
                 {
                     reboundRight = true;
-                    m_Rigidbody2D.AddForce(new Vector2(1400, m_JumpForce));
+                    m_Rigidbody2D.AddForce(new Vector2(reboundForce, m_JumpForce));
                     reboundRightTimer = .3f;
                 }
                 else if( onWallRight)
                 {
                     reboundLeft = true;
-                    m_Rigidbody2D.AddForce(new Vector2(-1400, m_JumpForce));
+                    m_Rigidbody2D.AddForce(new Vector2(-reboundForce, m_JumpForce));
                     reboundLeftTimer = .3f;
                 }
                 cantJumpTimer = .1f;
