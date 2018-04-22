@@ -5,7 +5,7 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : MonoBehaviour
     {
-        [SerializeField] private float m_MaxSpeed = 25f;                    // The fastest the player can travel in the x axis.
+        [SerializeField] private float m_MaxSpeed = 20f;                    // The fastest the player can travel in the x axis.
          private float m_JumpForce = 1000f;                  // Amount of force added when the player jumps.
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
@@ -32,7 +32,7 @@ namespace UnityStandardAssets._2D
         private Vector2 velocityLastUpdate = new Vector2(0,0);
         public SpriteRenderer jumpIndicator;
 
-        private float reboundForce = 1200.0f;
+        private float reboundForce = 1400.0f;
 
         [SerializeField] private int nJumpsLeft;
         [SerializeField] private float cantWallSlideTimer = 0.0f;
@@ -186,7 +186,7 @@ namespace UnityStandardAssets._2D
                 {
                     //Debug.Log("move: " + move);
                     
-                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (move*2.0f), -25, 25), m_Rigidbody2D.velocity.y);
+                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (move*3.0f), -20, 20), m_Rigidbody2D.velocity.y);
 
                 }
                 else
