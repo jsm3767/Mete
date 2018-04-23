@@ -22,17 +22,13 @@ public class GameManager : MonoBehaviour {
         timer = 0;
         songBPM = 90;
         secondsPerBeat = 60.0f / songBPM;
-        secondsPerMeasure = secondsPerBeat * 4;
-
-
-
+        secondsPerMeasure = secondsPerBeat * 2;
         chunks = new Queue<GameObject>();
         for(int i = 0; i < 4; i++)
         {
             majorBeat = 0;
             Pulse(true);
         }
-        Pulse();
 
         
     }
@@ -53,7 +49,7 @@ public class GameManager : MonoBehaviour {
 
         if (majorBeat == 0)
         {
-            majorBeat = 4;
+            majorBeat = 2;
             if (spawn)
             {
                 spawn.GetComponent<Rigidbody>().useGravity = false;
