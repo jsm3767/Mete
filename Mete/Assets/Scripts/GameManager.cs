@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     float songBPM;
     float secondsPerBeat;
     float secondsPerMeasure;
+    int majorBeat = 0;
 
     [SerializeField] GameObject Chunk;
     GameObject spawn;
@@ -19,17 +20,18 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timer = 0;
-        songBPM = 120;
+        songBPM = 90;
         secondsPerBeat = 60.0f / songBPM;
         secondsPerMeasure = secondsPerBeat * 4;
 
 
 
         chunks = new Queue<GameObject>();
-        Pulse(true);
-        Pulse(true);
-        Pulse(true);
-        Pulse(true);
+        for(int i = 0; i < 4; i++)
+        {
+            majorBeat = 0;
+            Pulse(true);
+        }
         Pulse();
 
         
@@ -39,46 +41,51 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         timer += Time.deltaTime;
 
-        if(timer > secondsPerMeasure)
+        if(timer > secondsPerBeat)
         {
-            timer -= secondsPerMeasure;
+            timer -= secondsPerBeat;
             Pulse();
         }
 	}
 
     void Pulse(bool startChunk = false)
     {
-        if (spawn)
+
+        if (majorBeat == 0)
         {
-            spawn.GetComponent<Rigidbody>().useGravity = false;
-            spawn.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-            spawn.transform.position = this.transform.position;
+            majorBeat = 4;
+            if (spawn)
+            {
+                spawn.GetComponent<Rigidbody>().useGravity = false;
+                spawn.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+                spawn.transform.position = this.transform.position;
+            }
+
+            this.transform.position = this.transform.position + new Vector3(12,0,0);
+            if (spawn && !startChunk)
+            {
+                Random.seed = Random.Range(0, 100000);
+                spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
+            }
+            else
+            {
+                spawn = Instantiate(Chunk);
+            }
+            spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerMeasure * secondsPerMeasure),0);
+            spawn.GetComponent<Rigidbody>().useGravity = true;
+
+            chunks.Enqueue(spawn);
+            if (chunks.Count > 4)
+            {
+                GameObject fall = chunks.Dequeue();
+                Rigidbody rb = fall.GetComponent<Rigidbody>();
+                rb.useGravity = true;
+                Destroy(fall, 4);
+            }
+
+            StartCoroutine(SlideCamera());
         }
-
-
-        this.transform.position = this.transform.position + new Vector3(12,0,0);
-        if (spawn && !startChunk)
-        {
-            Random.seed = Random.Range(0, 100000);
-            spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
-        }
-        else
-        {
-            spawn = Instantiate(Chunk);
-        }
-        spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerMeasure * secondsPerMeasure),0);
-        spawn.GetComponent<Rigidbody>().useGravity = true;
-
-
-        chunks.Enqueue(spawn);
-        if (chunks.Count > 4)
-        {
-            GameObject fall = chunks.Dequeue();
-            Rigidbody rb = fall.GetComponent<Rigidbody>();
-            rb.useGravity = true;
-            Destroy(fall, 4);
-        }
-
+        /* update chunks*/
         GameObject[] chunksOnScreen = GameObject.FindGameObjectsWithTag("Chunk");
 
         for(int i = 0; i < chunksOnScreen.Length; i++)
@@ -86,7 +93,8 @@ public class GameManager : MonoBehaviour {
             chunksOnScreen[i].GetComponent<ChunkPulse>().Pulse();
         }
 
-        StartCoroutine(SlideCamera());
+        /* slide Camera */
+        majorBeat -= 1;
     }
 
     protected IEnumerator SlideCamera()
