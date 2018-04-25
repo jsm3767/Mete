@@ -14,7 +14,6 @@ public class ChunkPulse : MonoBehaviour {
             if (gameObject.transform.GetChild(i).tag == "DisappearOnbeat" || gameObject.transform.GetChild(i).tag == "AppearOnBeat")
                 platforms.Add(gameObject.transform.GetChild(i).gameObject);
         }
-        Debug.Log(platforms.Count);
 	}
 	
 	// Update is called once per frame
