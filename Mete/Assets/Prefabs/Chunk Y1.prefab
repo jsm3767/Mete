@@ -337,12 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next:
-  - {fileID: 1292268253247706, guid: 42986a6d013b80b48bd20ad25a044599, type: 2}
-  - {fileID: 1421820514628540, guid: 6d8fa2ad5abae224bac22da815942b08, type: 2}
-  - {fileID: 1601284667756196, guid: 9a6031861a8edcf458bdc6e3337c9d3a, type: 2}
-  - {fileID: 1742684827580612, guid: 920b56ff11c285d4ea0a3a489a5be98c, type: 2}
-  - {fileID: 1114167828904870, guid: 92706b579f2aaab45a906bec9432f765, type: 2}
-  - {fileID: 1362706794592564, guid: 68a18224564b3594b825ebc0357d3a5e, type: 2}
+  - {fileID: 1689340765588000, guid: eabf269694f3bbe46b3bcabab8e7525d, type: 2}
   - {fileID: 1035826481679972, guid: 0a4691e256e329a40be58bb5e4245dba, type: 2}
 --- !u!114 &114508690524151806
 MonoBehaviour:

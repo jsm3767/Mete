@@ -730,7 +730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 1292268253247706, guid: 42986a6d013b80b48bd20ad25a044599, type: 2}
-  - {fileID: 1035826481679972, guid: 0a4691e256e329a40be58bb5e4245dba, type: 2}
   - {fileID: 1114167828904870, guid: 92706b579f2aaab45a906bec9432f765, type: 2}
 --- !u!114 &114688265921347926
 MonoBehaviour:

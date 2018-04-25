@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 4164418832399228}
   - component: {fileID: 54008103932599268}
   - component: {fileID: 114230071391501768}
-  - component: {fileID: 114998421898063294}
   m_Layer: 0
   m_Name: Chunk G3
   m_TagString: Chunk
@@ -646,15 +645,3 @@ MonoBehaviour:
   next:
   - {fileID: 1542856870690072, guid: c80affbffbba7814e9ba2bad15486798, type: 2}
   - {fileID: 1689340765588000, guid: eabf269694f3bbe46b3bcabab8e7525d, type: 2}
---- !u!114 &114998421898063294
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1520461996319326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c689acf99943d14cb04d3d7b089469c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platforms: []
