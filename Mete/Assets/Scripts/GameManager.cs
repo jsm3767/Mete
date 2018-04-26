@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
 
     void Pulse(bool startChunk = false)
     {
-
+        Debug.Log("Timer:" + majorBeat);
         if (majorBeat == 0)
         {
             majorBeat = 2;
@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour {
             this.transform.position = this.transform.position + new Vector3(12,0,0);
             if (spawn && !startChunk)
             {
+                Debug.Log("options"+ spawn.GetComponent<NextChunks>().next.Count);
                 Random.seed = Random.Range(0, 100000);
                 spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
             }
@@ -86,7 +87,8 @@ public class GameManager : MonoBehaviour {
 
         for(int i = 0; i < chunksOnScreen.Length; i++)
         {
-            chunksOnScreen[i].GetComponent<ChunkPulse>().Pulse();
+            if(chunksOnScreen[i].GetComponent<ChunkPulse>())
+                chunksOnScreen[i].GetComponent<ChunkPulse>().Pulse();
         }
 
         /* slide Camera */

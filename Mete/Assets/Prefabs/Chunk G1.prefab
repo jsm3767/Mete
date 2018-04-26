@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 4559326009636432}
   - component: {fileID: 54901750995033552}
   - component: {fileID: 114541805146328862}
-  - component: {fileID: 114223121669650372}
   m_Layer: 0
   m_Name: Chunk G1
   m_TagString: Chunk
@@ -165,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362706794592564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 152.41347, y: 66.15045, z: -279.02695}
+  m_LocalPosition: {x: 133.37955, y: 73.03017, z: -127.19385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4012322394544326}
@@ -183,8 +182,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1314865987650648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.5, y: 10, z: -0.5}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalPosition: {x: 11.5, y: 10.5, z: -0.5}
+  m_LocalScale: {x: 1, y: 21, z: 1}
   m_Children: []
   m_Father: {fileID: 4559326009636432}
   m_RootOrder: 2
@@ -534,18 +533,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114223121669650372
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1362706794592564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c689acf99943d14cb04d3d7b089469c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platforms: []
 --- !u!114 &114541805146328862
 MonoBehaviour:
   m_ObjectHideFlags: 1
