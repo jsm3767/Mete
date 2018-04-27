@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 namespace UnityStandardAssets._2D
 {
@@ -29,6 +30,9 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
         {
+            //check if out of bounds
+            if (gameObject.transform.position.y < -2)
+                SceneManager.LoadScene("Menu");
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftShift);
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
