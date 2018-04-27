@@ -6,6 +6,7 @@ namespace UnityStandardAssets._2D
     public class PlatformerCharacter2D : MonoBehaviour
     {
         [SerializeField] private float m_MaxSpeed = 20f;                    // The fastest the player can travel in the x axis.
+        [SerializeField] private float m_AirSpeed = 10f;
          private float m_JumpForce = 1000f;                  // Amount of force added when the player jumps.
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
@@ -185,12 +186,18 @@ namespace UnityStandardAssets._2D
                 if( !m_Grounded)
                 {
                     //Debug.Log("move: " + move);
-                    
-                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (move*3.0f), -20, 20), m_Rigidbody2D.velocity.y);
+                    float airmove = 0;
+                    if (move > .1)
+                        airmove = 1;
+                    else if (move < -.1)
+                        airmove = -1;
+
+                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (airmove*4.0f), -m_AirSpeed, m_AirSpeed), m_Rigidbody2D.velocity.y);
 
                 }
                 else
-                { 
+                {
+                    
                     m_Rigidbody2D.velocity = new Vector2( (move * m_MaxSpeed), m_Rigidbody2D.velocity.y);
                 }
 

@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxSpeed: 20
+  m_AirSpeed: 20
   m_CrouchSpeed: 1
   m_AirControl: 1
   m_WhatIsGround:
