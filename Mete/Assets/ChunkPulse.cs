@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ChunkPulse : MonoBehaviour {
 
-
+    int counter;
     public List<GameObject> platforms;
 	// Use this for initialization
 	void Start () {
         platforms = new List<GameObject>();
+        counter = 0;
 		for(int i = 0; i < gameObject.transform.childCount; i++)
         {
             if (gameObject.transform.GetChild(i).tag == "DisappearOnbeat" || gameObject.transform.GetChild(i).tag == "AppearOnBeat")
@@ -23,9 +24,14 @@ public class ChunkPulse : MonoBehaviour {
 
     public void Pulse()
     {
-        foreach(GameObject a in platforms)
+        counter++;
+        if (counter == 2)
         {
-            a.gameObject.SetActive(!a.gameObject.active);
+            foreach (GameObject a in platforms)
+            {
+                a.gameObject.SetActive(!a.gameObject.active);
+            }
+            counter = 0;
         }
     }
 }
