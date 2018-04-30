@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,15 +12,26 @@ public class GameManager : MonoBehaviour {
     int majorBeat = 0;
 
     [SerializeField] GameObject Chunk;
-    GameObject spawn;
+	GameObject player;
+	GameObject spawn;
 
     Queue<GameObject> chunks;
+
+	[SerializeField] Text scoretext;
 
     float timer;
     private int shake;
 
+	float score = 0;
+	float highscore = 0;
+	Vector3 startPosition;
+	Vector3 currentPosition;
+
 	// Use this for initialization
 	void Start () {
+		player = GameObject.FindGameObjectWithTag ("Player");
+		startPosition = player.transform.position;
+
         timer = 0;
         songBPM = 90;
         secondsPerBeat = 60.0f / songBPM;
@@ -29,12 +42,23 @@ public class GameManager : MonoBehaviour {
             majorBeat = 0;
             Pulse(true);
         }
-
-        
     }
+
+	public void End(){
+		SceneManager.LoadScene("Menu");
+	}
 	
 	// Update is called once per frame
 	void Update () {
+		currentPosition = player.transform.position;
+		score = currentPosition.x - startPosition.x;
+		score = (int)score;
+		scoretext.text = "Score: " + score;
+
+		if (currentPosition.y < -2) {
+			End ();
+		}
+
         timer += Time.deltaTime;
 
         if(timer > secondsPerBeat)

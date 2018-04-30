@@ -8,6 +8,7 @@ TagManager:
   - DisappearOnbeat
   - AppearOnBeat
   - Platform
+  - GameManager
   layers:
   - Default
   - TransparentFX
