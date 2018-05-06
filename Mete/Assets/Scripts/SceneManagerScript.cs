@@ -10,7 +10,13 @@ public class SceneManagerScript : MonoBehaviour {
         SceneManager.LoadScene("Level");
     }
 
-	public void HowToPlay()
+    public void StartPuzzleMode()
+    {
+        SceneManager.LoadScene("Level 1");
+
+    }
+
+    public void HowToPlay()
 	{
 		SceneManager.LoadScene ("HowToPlay");
 	}
