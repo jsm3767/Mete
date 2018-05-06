@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour {
         timer = 0;
         if( SceneManager.GetActiveScene().name == "Level 1")
         {
-            songBPM = 55;
+            songBPM = 45;
         }
         else
         { 
