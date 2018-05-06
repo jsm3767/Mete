@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class GameManager : MonoBehaviour {
 
@@ -14,10 +15,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject Chunk;
 	GameObject player;
 	GameObject spawn;
+	GameObject last;
 
     Queue<GameObject> chunks;
 
-	[SerializeField] Text scoretext;
+	[SerializeField] private Text scoreText;
+	[SerializeField] private Text highScoreText;
 
     float timer;
     private int shake;
@@ -42,18 +45,35 @@ public class GameManager : MonoBehaviour {
             majorBeat = 0;
             Pulse(true);
         }
+
+		if(PlayerPrefs.HasKey("playerscore"))
+		{
+			highscore = PlayerPrefs.GetFloat("playerscore");
+		}
+		else
+		{
+			PlayerPrefs.SetFloat("playerscore", highscore);
+		}
     }
 
 	public void End(){
-		SceneManager.LoadScene("Menu");
+		PlayerPrefs.SetFloat("playerscore", highscore);
+		SceneManager.LoadScene("Main");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (score > highscore) {
+			highscore = score;
+		}
+
+
 		currentPosition = player.transform.position;
 		score = currentPosition.x - startPosition.x;
 		score = (int)score;
-		scoretext.text = "Score: " + score;
+		scoreText.text = "SCORE: " + score;
+		highScoreText.text = "HIGH: " + highscore;
 
 		if (currentPosition.y < -2) {
 			End ();
@@ -66,34 +86,56 @@ public class GameManager : MonoBehaviour {
             timer -= secondsPerBeat;
             Pulse();
         }
+
+		if(CrossPlatformInputManager.GetButtonDown("Cancel")){
+			End ();
+		}
 	}
 
     void Pulse(bool startChunk = false)
     {
         if (majorBeat == 0)
         {
-            majorBeat = 2;
-            if (spawn)
-            {
-                spawn.GetComponent<Rigidbody>().useGravity = false;
-                spawn.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-                spawn.transform.position = this.transform.position;
-            }
+			//numbers
+			majorBeat = 2;
 
-            this.transform.position = this.transform.position + new Vector3(12,0,0);
-            if (spawn && !startChunk)
-            {
-                Random.seed = Random.Range(0, 100000);
-                spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
-            }
-            else
-            {
-                spawn = Instantiate(Chunk);
-            }
-            spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (secondsPerMeasure * secondsPerMeasure),0);
-            spawn.GetComponent<Rigidbody>().useGravity = true;
+			// going to spawn them much higher, and set the lock position to the left ogf the game object.  So basically the most recent spawn has to fall through two of these function calls
+			// when we enter the method, we want last to be locked into place to the left of the game object right away.
+			if (last) {
+				last.GetComponent<Rigidbody>().useGravity = false;
+				last.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+				last.transform.position = this.transform.position + new Vector3(-12,0,0);
+				chunks.Enqueue (last);
+			}
 
-            chunks.Enqueue(spawn);
+
+			this.transform.position = this.transform.position + new Vector3(12,0,0);
+
+			// then set the new "last" equal to our current spawn
+			if (spawn) {
+				last = spawn;
+			}
+
+			
+
+			// then update spawn
+			if (spawn && !startChunk)
+			{
+				Random.seed = Random.Range(0, 100000);
+				spawn = Instantiate(spawn.GetComponent<NextChunks>().next[(int)Random.Range(0, spawn.GetComponent<NextChunks>().next.Count)]);
+			}
+			else
+			{
+				spawn = Instantiate(Chunk);
+			}
+			if (startChunk) {
+				spawn.transform.position = this.transform.position;
+			} else {
+				float doubleSeconds = secondsPerMeasure * 2;
+				spawn.transform.position = this.transform.position + new Vector3(0,-.5f * Physics.gravity.y * (doubleSeconds * doubleSeconds),0);
+				spawn.GetComponent<Rigidbody>().useGravity = true;
+			}
+
             if (chunks.Count > 4)
             {
                 GameObject fall = chunks.Dequeue();
