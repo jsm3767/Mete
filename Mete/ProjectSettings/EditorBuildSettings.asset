@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: a40e48bffbcd6f04a94b51c417ab5ed1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: d8ea1950484bac94bbecd70ff3d6371f
+  - enabled: 1
+    path: Assets/Scenes/ChunkCreation.unity
+    guid: eaf0299f482fb684ea44f98db3ae8cc7

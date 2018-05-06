@@ -27,6 +27,15 @@ namespace UnityStandardAssets._2D
         private float reboundLeftTimer;
         private float reboundRightTimer;
 
+        //sound
+        private AudioSource audioSource;
+
+        public AudioClip jumpSound;
+        public AudioClip doubleJumpSound;
+        public AudioClip runSound;
+        public AudioClip wallSlideSound;
+        public AudioClip loseSound;
+
         private Transform leftCheck;
         private Transform rightCheck;
         private Transform artTransform;
@@ -58,6 +67,7 @@ namespace UnityStandardAssets._2D
 
             artTransform = transform.Find("Art");
 
+            audioSource = GetComponent<AudioSource>();
             m_Anim = GetComponentInChildren<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
         }
@@ -92,7 +102,7 @@ namespace UnityStandardAssets._2D
                         if( !onWallLeft)
                         { 
                             onWallLeft = true;
-                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 4.0f)));
+                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 2.0f)));
                         }
                     }
                     
@@ -104,16 +114,37 @@ namespace UnityStandardAssets._2D
                         if (!onWallRight)
                         {
                             onWallRight = true;
-                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 4.0f)));
+                            m_Rigidbody2D.AddForce(new Vector2(0.0f, Mathf.Abs(velocityLastUpdate.x * 2.0f)));
                         }
                     }
                 }
+            }
+
+            if ( (audioSource.clip == runSound && audioSource.isPlaying))
+            { 
+                audioSource.pitch = 1.5f*(GetComponent<Rigidbody2D>().velocity.magnitude / 20.0f);
+            }
+
+            if( !m_Grounded && audioSource.clip == runSound && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            if (m_Grounded && ( !((audioSource.clip == runSound || audioSource.clip == jumpSound) && audioSource.isPlaying) ) )
+            {
+                audioSource.volume = 1.0f;
+
+                audioSource.clip = runSound;
+                audioSource.loop = true;
+                audioSource.Play();
             }
 
             if ( !m_Grounded && (onWallLeft || onWallRight) )
             {
                 //mess with wall velocity if wanted
                 //m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -1.0f);
+
+                //audioSource.clip = wallSlideSound;
+                //audioSource.Play();
             }
             else
             {
@@ -192,7 +223,7 @@ namespace UnityStandardAssets._2D
                     else if (move < -.1)
                         airmove = -1;
 
-                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (airmove*4.0f), -m_AirSpeed, m_AirSpeed), m_Rigidbody2D.velocity.y);
+                    m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x + (airmove*2.0f), -m_AirSpeed, m_AirSpeed), m_Rigidbody2D.velocity.y);
 
                 }
                 else
@@ -225,10 +256,16 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+
+                audioSource.pitch = 1.0f;
+                audioSource.volume = .5f;
+                audioSource.loop = false;
+                audioSource.clip = jumpSound;
+                audioSource.Play();
                 cantJumpTimer = .1f;
             }
             //wall jump
-            if( (onWallLeft || onWallRight) && jump && !m_Grounded && cantJumpTimer <= 0.0f)
+            else if( (onWallLeft || onWallRight) && jump && !m_Grounded && cantJumpTimer <= 0.0f)
             {
                 cantWallSlideTimer = .3f;
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
@@ -246,16 +283,29 @@ namespace UnityStandardAssets._2D
                 }
                 cantJumpTimer = .1f;
 
+                audioSource.volume = .5f;
+
+                audioSource.clip = jumpSound;
+                audioSource.pitch = 1.0f;
+                audioSource.loop = false;
+                audioSource.Play();
+
                 onWallLeft = false;
                 onWallRight = false;
             }
             //air jump
-            if(!m_Grounded && !onWallLeft && !onWallRight && jump && nJumpsLeft > 0 && cantJumpTimer <= 0.0f)
+            else if(!m_Grounded && !onWallLeft && !onWallRight && jump && nJumpsLeft > 0 && cantJumpTimer <= 0.0f)
             {
                 nJumpsLeft--;
                 m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, 0.0f);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 cantJumpTimer = .1f;
+                audioSource.volume = .5f;
+
+                audioSource.clip = doubleJumpSound;
+                audioSource.pitch = 1.0f;
+                audioSource.loop = false;
+                audioSource.Play();
 
             }
         }
@@ -270,6 +320,15 @@ namespace UnityStandardAssets._2D
             Vector3 theScale = artTransform.localScale;
             theScale.x *= -1;
             artTransform.localScale = theScale;
+        }
+
+        public void PlaySound(float volume, float pitch, bool loop, AudioClip clip)
+        {
+            audioSource.pitch = pitch;
+            audioSource.volume = volume;
+            audioSource.loop = loop;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 }

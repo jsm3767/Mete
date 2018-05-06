@@ -22,7 +22,11 @@ public class Bounce : MonoBehaviour
         if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
             if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0)
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, bounciness), ForceMode2D.Impulse);
+            { 
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, bounciness), ForceMode2D.Impulse);                GetComponentInChildren<AudioSource>().Play();
+                GetComponentInChildren<AudioSource>().volume = 1.5f;
+                GetComponentInChildren<AudioSource>().Play();
+            }
         }
     }
 }

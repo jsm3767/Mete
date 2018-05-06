@@ -11,6 +11,8 @@ namespace UnityStandardAssets._2D
             if (other.tag == "Player")
             {
                 SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
+                //play death cue
+                //other.GetComponent<PlatformerCharacter2D>().
             }
         }
     }
