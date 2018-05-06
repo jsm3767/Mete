@@ -232,8 +232,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587069225985506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.39, y: 19.72, z: -0.5}
-  m_LocalScale: {x: 7.5796857, y: 1, z: 1}
+  m_LocalPosition: {x: 3.55, y: 19.72, z: -0.5}
+  m_LocalScale: {x: 6.158492, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4844072564094938}
   m_RootOrder: 5
@@ -770,7 +770,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c9949c527b71fec41b6ea29689787622, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 44d843fcf26314a4398b881de5eac9da, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -828,7 +828,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -853,13 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next:
-  - {fileID: 1292268253247706, guid: 42986a6d013b80b48bd20ad25a044599, type: 2}
-  - {fileID: 0}
-  - {fileID: 1601284667756196, guid: 9a6031861a8edcf458bdc6e3337c9d3a, type: 2}
-  - {fileID: 1742684827580612, guid: 920b56ff11c285d4ea0a3a489a5be98c, type: 2}
-  - {fileID: 1900593369778260, guid: c096365a271286e4b8dfd8dd470e61a6, type: 2}
-  - {fileID: 1035826481679972, guid: 0a4691e256e329a40be58bb5e4245dba, type: 2}
-  - {fileID: 0}
+  - {fileID: 1785379335639812, guid: 7185a781f2ac2d34b80ed3d55e53bc22, type: 2}
 --- !u!114 &114420783829729774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -872,8 +866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectsToDisable:
-  - {fileID: 0}
-  soundsToPlay:
   - {fileID: 0}
 --- !u!114 &114665766488590390
 MonoBehaviour:

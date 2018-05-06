@@ -881,13 +881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next:
-  - {fileID: 1292268253247706, guid: 42986a6d013b80b48bd20ad25a044599, type: 2}
-  - {fileID: 0}
-  - {fileID: 1601284667756196, guid: 9a6031861a8edcf458bdc6e3337c9d3a, type: 2}
-  - {fileID: 1742684827580612, guid: 920b56ff11c285d4ea0a3a489a5be98c, type: 2}
-  - {fileID: 1900593369778260, guid: c096365a271286e4b8dfd8dd470e61a6, type: 2}
-  - {fileID: 1035826481679972, guid: 0a4691e256e329a40be58bb5e4245dba, type: 2}
-  - {fileID: 0}
+  - {fileID: 1250674320574412, guid: 51eb1e5d03203614b80cd6f6c690db3c, type: 2}
+  - {fileID: 1717699120118838, guid: af6c7d5ed022cb646ad5abdebc1204dd, type: 2}
 --- !u!114 &114968901500852484
 MonoBehaviour:
   m_ObjectHideFlags: 1

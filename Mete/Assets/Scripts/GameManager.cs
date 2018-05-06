@@ -36,7 +36,14 @@ public class GameManager : MonoBehaviour {
 		startPosition = player.transform.position;
 
         timer = 0;
-        songBPM = 90;
+        if( SceneManager.GetActiveScene().name == "Level 1")
+        {
+            songBPM = 55;
+        }
+        else
+        { 
+            songBPM = 90;
+        }
         secondsPerBeat = 60.0f / songBPM;
         secondsPerMeasure = secondsPerBeat * 2;
         chunks = new Queue<GameObject>();

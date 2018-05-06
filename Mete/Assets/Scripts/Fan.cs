@@ -18,28 +18,31 @@ public class Fan : MonoBehaviour
     {
         //Debug.Log(LayerMask.GetMask("Ignore Raycast"));
         
-        RaycastHit2D[] hits = new RaycastHit2D[10];
+        List<RaycastHit2D> hits = new List<RaycastHit2D>();
 
         for (int index = 0; index < 10; index++) 
         {
-            hits[index] = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(-1.25f + .25f*index,0.0f),
-               (Quaternion.Euler(0, 0, gameObject.transform.eulerAngles.z) * Vector2.up), 
-                100.0f, 
+            RaycastHit2D temp = Physics2D.Raycast((Vector2)gameObject.transform.position + new Vector2(-1.25f + .25f * index, 0.0f),
+               (Quaternion.Euler(0, 0, gameObject.transform.eulerAngles.z) * Vector2.up),
+                100.0f,
                 ~LayerMask.GetMask("Ignore Raycast"));
+            if(temp)
+            { 
+                hits.Add(temp);
+            }
+
+        }
+
+        bool hitPlayer = false;
+        foreach( RaycastHit2D r in hits)
+        {
+            if (r.transform.tag == "Player")
+                hitPlayer = true;
         }
 
         Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + ((Quaternion.Euler(0, 0, gameObject.transform.eulerAngles.z ) * Vector2.up) * 100.0f )  );
         
-        if ( hits[0].transform.tag == "Player" ||
-            hits[1].transform.tag == "Player" ||
-            hits[2].transform.tag == "Player" ||
-            hits[3].transform.tag == "Player" ||
-            hits[4].transform.tag == "Player" ||
-            hits[5].transform.tag == "Player" ||
-            hits[6].transform.tag == "Player" ||
-            hits[7].transform.tag == "Player" ||
-            hits[8].transform.tag == "Player" ||
-            hits[9].transform.tag == "Player" )
+        if ( hitPlayer)
         {
             Debug.Log("hit");
             player.transform.GetComponent<Rigidbody2D>().AddForce(

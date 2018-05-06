@@ -5,7 +5,6 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     public List<GameObject> ObjectsToDisable;
-    public List<AudioSource> soundsToPlay;
     // Use this for initialization
     void Start()
     {
@@ -21,6 +20,9 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        ObjectsToDisable = (new List<GameObject>(GameObject.FindGameObjectsWithTag("Disable")));
+
+        GetComponent<AudioSource>().Play();
 
         if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
@@ -29,10 +31,7 @@ public class Button : MonoBehaviour
             {
                 g.SetActive(false);
             }
-            foreach (AudioSource a in soundsToPlay)
-            {
-                a.GetComponent<AudioSource>().PlayDelayed(.1f);
-            }
+
         }
     }
 }

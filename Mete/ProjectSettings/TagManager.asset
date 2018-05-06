@@ -9,6 +9,7 @@ TagManager:
   - AppearOnBeat
   - Platform
   - GameManager
+  - Disable
   layers:
   - Default
   - TransparentFX

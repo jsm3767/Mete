@@ -258,7 +258,7 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
                 audioSource.pitch = 1.0f;
-                audioSource.volume = .5f;
+                audioSource.volume = .2f;
                 audioSource.loop = false;
                 audioSource.clip = jumpSound;
                 audioSource.Play();
@@ -283,7 +283,7 @@ namespace UnityStandardAssets._2D
                 }
                 cantJumpTimer = .1f;
 
-                audioSource.volume = .5f;
+                audioSource.volume = .2f;
 
                 audioSource.clip = jumpSound;
                 audioSource.pitch = 1.0f;
@@ -300,7 +300,7 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, 0.0f);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 cantJumpTimer = .1f;
-                audioSource.volume = .5f;
+                audioSource.volume = .2f;
 
                 audioSource.clip = doubleJumpSound;
                 audioSource.pitch = 1.0f;
