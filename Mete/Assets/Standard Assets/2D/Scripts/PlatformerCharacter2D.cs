@@ -135,7 +135,7 @@ namespace UnityStandardAssets._2D
 
                 audioSource.clip = runSound;
                 audioSource.loop = true;
-                audioSource.Play();
+                //audioSource.Play();
             }
 
             if ( !m_Grounded && (onWallLeft || onWallRight) )
