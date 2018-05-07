@@ -132,11 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1545394306473736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 74.88, y: 11.27, z: -1}
-=======
-  m_LocalPosition: {x: 30, y: 5, z: -0.5}
->>>>>>> f86cd96d66912b38a642f9e190d84ea144d31ba4
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
   - {fileID: 4717531396950352}
@@ -403,19 +399,11 @@ MonoBehaviour:
     m_Bits: 4294967295
   onWallRight: 0
   onWallLeft: 0
-<<<<<<< HEAD
   jumpSound: {fileID: 8300000, guid: fff57244ba9eb714ca98d39bee3565b1, type: 3}
   doubleJumpSound: {fileID: 8300000, guid: 5709b2a0920db194da3036a2c12e3aba, type: 3}
   runSound: {fileID: 8300000, guid: 4477eda2d0ce7d9479747636b666b5cb, type: 3}
   wallSlideSound: {fileID: 8300000, guid: 23af45426aacf6f42a24b7fdde5dcdbc, type: 3}
   loseSound: {fileID: 8300000, guid: e43f9de08a31bee42865f46cec50f515, type: 3}
-=======
-  jumpSound: {fileID: 0}
-  doubleJumpSound: {fileID: 0}
-  runSound: {fileID: 0}
-  wallSlideSound: {fileID: 0}
-  loseSound: {fileID: 0}
->>>>>>> f86cd96d66912b38a642f9e190d84ea144d31ba4
   jumpIndicator: {fileID: 212785207838962386}
   nJumpsLeft: 0
   cantWallSlideTimer: 0

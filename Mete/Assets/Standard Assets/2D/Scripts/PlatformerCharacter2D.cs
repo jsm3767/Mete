@@ -261,7 +261,7 @@ namespace UnityStandardAssets._2D
                 audioSource.volume = .2f;
                 audioSource.loop = false;
                 audioSource.clip = jumpSound;
-                audioSource.Play();
+                //audioSource.Play();
                 cantJumpTimer = .1f;
             }
             //wall jump
@@ -288,7 +288,7 @@ namespace UnityStandardAssets._2D
                 audioSource.clip = jumpSound;
                 audioSource.pitch = 1.0f;
                 audioSource.loop = false;
-                audioSource.Play();
+               // audioSource.Play();
 
                 onWallLeft = false;
                 onWallRight = false;
@@ -305,7 +305,7 @@ namespace UnityStandardAssets._2D
                 audioSource.clip = doubleJumpSound;
                 audioSource.pitch = 1.0f;
                 audioSource.loop = false;
-                audioSource.Play();
+                //audioSource.Play();
 
             }
         }
