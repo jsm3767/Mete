@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4717531396950352}
   m_Layer: 0
   m_Name: GroundCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1545394306473736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.11, y: 12.8, z: -0.5}
+  m_LocalPosition: {x: 74.88, y: 11.27, z: -1}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
   - {fileID: 4717531396950352}
@@ -349,7 +349,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -403,6 +403,7 @@ MonoBehaviour:
   doubleJumpSound: {fileID: 8300000, guid: 5709b2a0920db194da3036a2c12e3aba, type: 3}
   runSound: {fileID: 8300000, guid: 4477eda2d0ce7d9479747636b666b5cb, type: 3}
   wallSlideSound: {fileID: 8300000, guid: 23af45426aacf6f42a24b7fdde5dcdbc, type: 3}
+  loseSound: {fileID: 8300000, guid: e43f9de08a31bee42865f46cec50f515, type: 3}
   jumpIndicator: {fileID: 212785207838962386}
   nJumpsLeft: 0
   cantWallSlideTimer: 0

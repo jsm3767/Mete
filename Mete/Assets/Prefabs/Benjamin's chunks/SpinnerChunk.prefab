@@ -1659,5 +1659,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 1483714003118048, guid: 473e8c9531167f744a15b8245daf6251, type: 2}
-  - {fileID: 1487006215837612, guid: e73703670237bbe4c9f02edbe15d6a9c, type: 2}
   - {fileID: 1538979715096024, guid: 233fbad3bf5a0d640a6b9f70cb169910, type: 2}

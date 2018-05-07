@@ -40,7 +40,7 @@ public class Fan : MonoBehaviour
                 hitPlayer = true;
         }
 
-        Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + ((Quaternion.Euler(0, 0, gameObject.transform.eulerAngles.z ) * Vector2.up) * 100.0f )  );
+        //Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + ((Quaternion.Euler(0, 0, gameObject.transform.eulerAngles.z ) * Vector2.up) * 100.0f )  );
         
         if ( hitPlayer)
         {

@@ -856,13 +856,13 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0.331
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -883,6 +883,7 @@ MonoBehaviour:
   next:
   - {fileID: 1717699120118838, guid: af6c7d5ed022cb646ad5abdebc1204dd, type: 2}
   - {fileID: 1250674320574412, guid: 51eb1e5d03203614b80cd6f6c690db3c, type: 2}
+  - {fileID: 1168413505761052, guid: 1bf6fe06dc20c8c4abadee6327afc6ab, type: 2}
 --- !u!114 &114461774416470114
 MonoBehaviour:
   m_ObjectHideFlags: 1

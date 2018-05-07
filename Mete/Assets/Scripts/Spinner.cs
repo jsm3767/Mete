@@ -19,11 +19,11 @@ public class Spinner : MonoBehaviour
     {
         if(direction)
         { 
-            transform.Rotate(new Vector3(0, 0, 1.0f ));
+            transform.Rotate(new Vector3(0, 0, 1.2f ));
         }
         else
         {
-            transform.Rotate(new Vector3(0, 0, -1.0f));
+            transform.Rotate(new Vector3(0, 0, -1.2f));
 
         }
     }
